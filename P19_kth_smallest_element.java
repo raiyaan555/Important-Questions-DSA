@@ -1,5 +1,5 @@
 public class P19_kth_smallest_element {
-    public static int findKthLargest(int[] nums, int k) {
+    public static int findKthSmallest(int[] nums, int k) {
         int len = nums.length;
         return quickSelect(nums, 0, len-1, k-1);
     }
@@ -39,6 +39,6 @@ public class P19_kth_smallest_element {
 
     public static void main(String[] args) {
         int[] nums = { 2, 4, 1 ,3};
-        System.out.println(findKthLargest(nums,3));
+        System.out.println(findKthSmallest(nums,3));
     }
 }
