@@ -30,8 +30,6 @@ public class P20_Merge_Overlapping {
         // merge interval will be stored in the temp array)
         res.add(temp);
         return res.toArray(new int[res.size()][]);
-
-        
     }
     public static void main(String[] args) {
         int[][] nums = {{1,3},{2,6},{8,10},{15,18}};
