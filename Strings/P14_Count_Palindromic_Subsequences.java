@@ -6,7 +6,7 @@ public class P14_Count_Palindromic_Subsequences {
         // Your code here
     }public static void main(String[] args) {
         // wow
-        // 
+        // new
     }
 
 
