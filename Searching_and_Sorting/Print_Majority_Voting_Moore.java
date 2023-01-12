@@ -7,6 +7,8 @@ public class Print_Majority_Voting_Moore {
     public static int majorityProbable(int a[]) {
         int majority = 0;
         int count = 1;
+       
+        
 
         for (int i = 1; i < a.length; i++) {
             if (a[majority] == a[i]) {
@@ -14,6 +16,7 @@ public class Print_Majority_Voting_Moore {
             } else {
                 count--;
             }
+        
 
             if (count <= 0) {
                 count = 1;
@@ -21,6 +24,8 @@ public class Print_Majority_Voting_Moore {
             }
 
         }
+
+      
         return a[majority];
     }
 
