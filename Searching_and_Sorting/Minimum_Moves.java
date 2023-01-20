@@ -30,7 +30,7 @@ public class Minimum_Moves {
     }
 
     public static void main(String[] args) {
-        int[] nums = { 1, 3, 7, 8, 11 };
+        int[] nums = { 4, 6};
 
         System.out.println(minMoves2(nums));
     }
