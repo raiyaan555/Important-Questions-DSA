@@ -1,13 +1,13 @@
 package Linked_List;
 
-public class LinkedList {
+public class SinglyLinkedList {
 
     private Node head;
     private Node tail;
 
     private int size;
 
-    public LinkedList() {
+    public SinglyLinkedList() {
         this.size = 0;
     }
 
@@ -160,7 +160,7 @@ public class LinkedList {
         }
 
         public static void main(String[] args) {
-            LinkedList ll = new LinkedList();
+            SinglyLinkedList ll = new SinglyLinkedList();
             ll.insertFirst(2);
             ll.insertFirst(3);
             ll.insertFirst(3);
