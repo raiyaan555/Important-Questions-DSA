@@ -1,6 +1,6 @@
 package StackandQueues;
 
-public class Dynamic_Stack extends Stack_demo {
+public class Dynamic_Stack extends Static_Stack {
 
     Dynamic_Stack() {
         super();
