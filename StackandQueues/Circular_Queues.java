@@ -2,7 +2,7 @@ package StackandQueues;
 
 public class Circular_Queues {
     private static final int DEFAULT_SIZE = 10;
-    private int[] data;
+    int[] data;
 
     int end = 0;
     int front = 0;
