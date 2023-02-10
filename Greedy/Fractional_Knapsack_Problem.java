@@ -23,4 +23,12 @@ public class Fractional_Knapsack_Problem {
         }
         return res;
     }
+
+    class Item {
+        int value, weight;
+        Item(int x, int y){
+            this.value = x;
+            this.weight = y;
+        }
+    }
 }
