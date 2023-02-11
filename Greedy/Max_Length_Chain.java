@@ -21,6 +21,13 @@ public class Max_Length_Chain {
         
     }
 
+    
+}
+class Pair
+{
+    int x;
+    int y;
+    
     public Pair(int a, int b)
     {
         x = a;
