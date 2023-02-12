@@ -1,5 +1,5 @@
 package Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class P23_SubArraySum_Divisible_by_k_leetcode {
     public static int subarraysDivByK(int[] nums, int k) {
