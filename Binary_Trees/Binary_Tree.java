@@ -20,11 +20,11 @@ public class Binary_Tree {
 
         root = new Node(data);
 
-        System.out.println("Enter left for" + data);
+        System.out.println("Enter left for " + data);
         root.left = createTree();
 
 
-        System.out.println("Enter right for" + data);
+        System.out.println("Enter right for " + data);
         root.right = createTree();
 
 
@@ -33,9 +33,47 @@ public class Binary_Tree {
         return root;
 
     }
+
+    static void inOrder(Node root){
+        if(root == null){
+            return;
+        }
+        inOrder(root.left);
+        System.out.print(root.data+" ");
+        inOrder(root.right);
+    }
+
+    static void PreOrder(Node root){
+        if(root == null){
+            return;
+        }
+
+        System.out.print(root.data+" ");
+        inOrder(root.left);
+        inOrder(root.right);
+    }
+
+    static void PostOrder(Node root){
+        if(root == null){
+            return;
+        }
+
+        inOrder(root.left);
+        inOrder(root.right);
+        System.out.print(root.data+" ");
+        
+    }
+
+
     public static void main(String[] args) {
 
-        System.out.println(createTree());
+       Node root = createTree();
+       inOrder(root);
+       System.out.println();
+       PreOrder(root);
+       System.out.println();
+       PostOrder(root);
+       System.out.println();
 
     }
 }
