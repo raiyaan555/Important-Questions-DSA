@@ -64,6 +64,14 @@ public class Binary_Tree {
         
     }
 
+    public static int height(Node root){
+        if(root==null){
+            return 0;
+        }
+
+        return Math.max(height(root.left),height(root.right))+1;
+    }
+
 
     public static void main(String[] args) {
 
@@ -74,6 +82,7 @@ public class Binary_Tree {
        System.out.println();
        PostOrder(root);
        System.out.println();
+       System.out.println(height(root));
 
     }
 }
