@@ -73,6 +73,26 @@ public class Binary_Tree {
     }
 
 
+    public static int size(Node root){
+        if(root==null){
+            return 0;
+        }
+
+        return size(root.left)+size(root.right)+1;
+    }
+
+
+    public static int maxValue(Node root){
+        if(root==null){
+            return Integer.MIN_VALUE;
+        }
+
+        return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
+    }
+
+
+
+
     public static void main(String[] args) {
 
        Node root = createTree();
@@ -83,6 +103,9 @@ public class Binary_Tree {
        PostOrder(root);
        System.out.println();
        System.out.println(height(root));
+
+       System.out.println(size(root));
+
 
     }
 }
