@@ -1,5 +1,7 @@
 package Binary_Trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Binary_Tree {
@@ -92,6 +94,40 @@ public class Binary_Tree {
 
 
 
+    static void printLevelOrder(Node root){
+        Queue <Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+
+        while(!q.isEmpty()){
+            Node curr  = q.poll();
+
+            if(curr==null){
+                if(q.isEmpty()){
+                    return;
+                }
+                q.add(null);
+                System.out.println();
+                continue;
+            }
+
+            System.out.print(curr.data);
+
+            if(curr.left!=null){
+                q.add(curr.left);
+            }
+
+            if(curr.right!=null){
+                q.add(curr.right);
+            }
+        }
+    }
+
+
+
+
+
+
 
     public static void main(String[] args) {
 
@@ -104,7 +140,12 @@ public class Binary_Tree {
        System.out.println();
        System.out.println(height(root));
 
+
+
        System.out.println(size(root));
+
+       printLevelOrder(root);
+
 
 
     }
