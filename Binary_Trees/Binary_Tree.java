@@ -120,6 +120,9 @@ public class Binary_Tree {
             if(curr.right!=null){
                 q.add(curr.right);
             }
+
+
+            
         }
     }
 
