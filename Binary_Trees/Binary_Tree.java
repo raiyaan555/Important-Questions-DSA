@@ -1,5 +1,6 @@
 package Binary_Trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -7,16 +8,14 @@ import java.util.Scanner;
 public class Binary_Tree {
 
     static Scanner sc = new Scanner(System.in);
-    
-    static Node createTree(){
 
+    static Node createTree() {
 
         Node root = null;
         System.out.println("Enter data: ");
-        int data  =sc.nextInt();
+        int data = sc.nextInt();
 
-
-        if(data==-1){
+        if (data == -1) {
             return null;
         }
 
@@ -25,85 +24,77 @@ public class Binary_Tree {
         System.out.println("Enter left for " + data);
         root.left = createTree();
 
-
         System.out.println("Enter right for " + data);
         root.right = createTree();
-
-
-
 
         return root;
 
     }
 
-    static void inOrder(Node root){
-        if(root == null){
+    static void inOrder(Node root) {
+        if (root == null) {
             return;
         }
         inOrder(root.left);
-        System.out.print(root.data+" ");
+        System.out.print(root.data + " ");
         inOrder(root.right);
     }
 
-    static void PreOrder(Node root){
-        if(root == null){
+    static void PreOrder(Node root) {
+        if (root == null) {
             return;
         }
 
-        System.out.print(root.data+" ");
+        System.out.print(root.data + " ");
         inOrder(root.left);
         inOrder(root.right);
     }
 
-    static void PostOrder(Node root){
-        if(root == null){
+    static void PostOrder(Node root) {
+        if (root == null) {
             return;
         }
 
         inOrder(root.left);
         inOrder(root.right);
-        System.out.print(root.data+" ");
-        
+        System.out.print(root.data + " ");
+
     }
 
-    public static int height(Node root){
-        if(root==null){
+    public static int height(Node root) {
+        if (root == null) {
             return 0;
         }
 
-        return Math.max(height(root.left),height(root.right))+1;
+        return Math.max(height(root.left), height(root.right)) + 1;
     }
 
-
-    public static int size(Node root){
-        if(root==null){
+    public static int size(Node root) {
+        if (root == null) {
             return 0;
         }
 
-        return size(root.left)+size(root.right)+1;
+        return size(root.left) + size(root.right) + 1;
     }
 
-
-    public static int maxValue(Node root){
-        if(root==null){
+    public static int maxValue(Node root) {
+        if (root == null) {
             return Integer.MIN_VALUE;
         }
 
         return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
     }
 
-
-
-    static void printLevelOrder(Node root){
-        Queue <Node> q = new LinkedList<>();
+    static void printLevelOrder(Node root) {
+        Queue<Node> q = new LinkedList<>();
         q.add(root);
         q.add(null);
 
-        while(!q.isEmpty()){
-            Node curr  = q.poll();
+        while (!q.isEmpty()) {
+            Node curr = q.poll();
 
-            if(curr==null){
-                if(q.isEmpty()){
+            if (curr == null) {
+                if (q.isEmpty()) {
                     return;
                 }
                 q.add(null);
@@ -113,43 +104,58 @@ public class Binary_Tree {
 
             System.out.print(curr.data);
 
-            if(curr.left!=null){
+            if (curr.left != null) {
                 q.add(curr.left);
             }
 
-            if(curr.right!=null){
+            if (curr.right != null) {
                 q.add(curr.right);
             }
 
-
-            
         }
+
+    }
+
+
+    static void printLeftViewUntil(Node root, ArrayList<Node> list, int level){
+        if(root ==null){
+            return;
+        }
+
+        if(list.get(level)==null){
+            list.add(root);
+        }
+
+        printLeftViewUntil(root.left, list, level+1);
+        printLeftViewUntil(root.right, list, level+1);
+
     }
 
 
 
+    public static void leftView(Node root){
+        ArrayList <Node> list = new ArrayList<>();
 
+        printLeftViewUntil(root, list, 0);
 
-
-
+        for(Node curr: list){
+            System.out.print(curr.data+" ");
+        }
+    }
     public static void main(String[] args) {
 
-       Node root = createTree();
-       inOrder(root);
-       System.out.println();
-       PreOrder(root);
-       System.out.println();
-       PostOrder(root);
-       System.out.println();
-       System.out.println(height(root));
+        Node root = createTree();
+        inOrder(root);
+        System.out.println();
+        PreOrder(root);
+        System.out.println();
+        PostOrder(root);
+        System.out.println();
+        System.out.println(height(root));
 
+        System.out.println(size(root));
 
-
-       System.out.println(size(root));
-
-       printLevelOrder(root);
-
-
+        printLevelOrder(root);
 
     }
 }
