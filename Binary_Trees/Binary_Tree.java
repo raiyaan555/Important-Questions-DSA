@@ -123,7 +123,7 @@ public class Binary_Tree {
         }
 
         if(list.get(level)==null){
-            list.add(root);
+            list.set(level, root);
         }
 
         printLeftViewUntil(root.left, list, level+1);
@@ -156,6 +156,7 @@ public class Binary_Tree {
         System.out.println(size(root));
 
         printLevelOrder(root);
+        printLeftViewUntil(root, null, 0);
 
     }
 }
