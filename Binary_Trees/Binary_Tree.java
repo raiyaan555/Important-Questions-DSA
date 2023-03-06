@@ -119,75 +119,92 @@ public class Binary_Tree {
 
     }
 
-
-    static void printLeftViewUntil(Node root, ArrayList<Node> list, int level){
-        if(root ==null){
+    static void printLeftViewUntil(Node root, ArrayList<Node> list, int level) {
+        if (root == null) {
             return;
         }
 
-        if(list.get(level)==null){
+        if (list.get(level) == null) {
             list.set(level, root);
         }
 
-        printLeftViewUntil(root.left, list, level+1);
-        printLeftViewUntil(root.right, list, level+1);
+        printLeftViewUntil(root.left, list, level + 1);
+        printLeftViewUntil(root.right, list, level + 1);
 
     }
 
-
-
-    public static void leftView(Node root){
-        ArrayList <Node> list = new ArrayList<>();
+    public static void leftView(Node root) {
+        ArrayList<Node> list = new ArrayList<>();
 
         printLeftViewUntil(root, list, 0);
 
-        for(Node curr: list){
-            System.out.print(curr.data+" ");
+        for (Node curr : list) {
+            System.out.print(curr.data + " ");
         }
     }
 
-    public static ArrayList<Integer> topView(Node root){
+    public static ArrayList<Integer> topView(Node root) {
         Queue<Pair> q = new ArrayDeque<>();
 
         Map<Integer, Integer> map = new TreeMap<>();
 
         q.add(new Pair(0, root));
 
-        while(!q.isEmpty()){
+        while (!q.isEmpty()) {
             Pair curr = q.poll();
 
-            if(!map.containsKey(curr.ind)){
+            if (!map.containsKey(curr.ind)) {
                 map.put(curr.ind, curr.root.data);
             }
 
-            if(curr.root.left!=null){
-                q.add(new Pair(curr.ind-1, curr.root.left));
+            if (curr.root.left != null) {
+                q.add(new Pair(curr.ind - 1, curr.root.left));
             }
 
-            if(curr.root.right!=null){
-                q.add(new Pair(curr.ind+1, curr.root.right));
+            if (curr.root.right != null) {
+                q.add(new Pair(curr.ind + 1, curr.root.right));
             }
 
         }
 
         ArrayList<Integer> ans = new ArrayList<>();
 
-        for(Map.Entry<Integer, Integer> entry : map.entrySet())
-        ans.add(entry.getValue());
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+            ans.add(entry.getValue());
 
         return ans;
 
-        
     }
 
+    public static ArrayList<Integer> bottomView(Node root) {
+        Queue<Pair> q = new ArrayDeque<>();
 
+        Map<Integer, Integer> map = new TreeMap<>();
 
+        q.add(new Pair(0, root));
 
+        while (!q.isEmpty()) {
+            Pair curr = q.poll();
+            map.put(curr.ind, curr.root.data);
+            
+            if (curr.root.left != null) {
+                q.add(new Pair(curr.ind - 1, curr.root.left));
+            }
 
-    
+            if (curr.root.right != null) {
+                q.add(new Pair(curr.ind + 1, curr.root.right));
+            }
 
+        }
 
+        ArrayList<Integer> ans = new ArrayList<>();
 
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+            ans.add(entry.getValue());
+
+        return ans;
+
+    }
 
     public static void main(String[] args) {
 
@@ -206,9 +223,6 @@ public class Binary_Tree {
         printLeftViewUntil(root, null, 0);
 
     }
-
-
-
 
 }
 
