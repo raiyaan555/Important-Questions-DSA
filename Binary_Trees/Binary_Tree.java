@@ -225,6 +225,36 @@ public class Binary_Tree {
     }
 
 
+    static int diameter(Node root){
+        if(root==null){
+            return 0;
+        }
+
+        int dleft = diameter(root.left);
+        int dright = diameter(root.right);
+
+        int curr = height(root.left)+height(root.right)+1;
+
+        return Math.max(curr, Math.max(dleft, dright));
+
+    }
+    static int ans =0;
+    static int heightmodifiedDiameter(Node root){
+        if (root == null) {
+            return 0;
+        }
+        ans = Math.max(ans, 1+height(root.left)+height(root.right));
+
+        return Math.max(height(root.left), height(root.right)) + 1;
+    
+    }
+
+
+
+
+
+
+
 
 
 
