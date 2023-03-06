@@ -1,9 +1,12 @@
 package Binary_Trees;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Binary_Tree {
 
@@ -142,6 +145,50 @@ public class Binary_Tree {
             System.out.print(curr.data+" ");
         }
     }
+
+    public static ArrayList<Integer> topView(Node root){
+        Queue<Pair> q = new ArrayDeque<>();
+
+        Map<Integer, Integer> map = new TreeMap<>();
+
+        q.add(new Pair(0, root));
+
+        while(!q.isEmpty()){
+            Pair curr = q.poll();
+
+            if(!map.containsKey(curr.ind)){
+                map.put(curr.ind, curr.root.data);
+            }
+
+            if(curr.root.left!=null){
+                q.add(new Pair(curr.ind-1, curr.root.left));
+            }
+
+            if(curr.root.right!=null){
+                q.add(new Pair(curr.ind+1, curr.root.right));
+            }
+
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        for(Map.Entry<Integer, Integer> entry : map.entrySet())
+        ans.add(entry.getValue());
+
+        return ans;
+
+        
+    }
+
+
+
+
+
+    
+
+
+
+
     public static void main(String[] args) {
 
         Node root = createTree();
@@ -159,6 +206,10 @@ public class Binary_Tree {
         printLeftViewUntil(root, null, 0);
 
     }
+
+
+
+
 }
 
 class Node {
