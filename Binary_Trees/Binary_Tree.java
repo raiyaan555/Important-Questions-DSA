@@ -206,6 +206,29 @@ public class Binary_Tree {
 
     }
 
+    Node prev =null, head =null;
+
+    void convertToDLL(Node root){
+        if(root==null){
+            return;
+        }
+        convertToDLL(root.left);
+        if(prev==null) head=root;
+        else{
+            root.left = prev;
+            prev.right = root;
+        }
+
+        prev = root;
+        convertToDLL(root.right);
+
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
 
         Node root = createTree();
