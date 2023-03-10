@@ -88,6 +88,18 @@ public class Binary_Tree {
         return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
     }
 
+
+    public static int minValue(Node root) {
+        if (root == null) {
+            return Integer.MAX_VALUE;
+        }
+
+        return Math.min(root.data, Math.min(minValue(root.left), minValue(root.right)));
+    }
+
+
+
+
     static void printLevelOrder(Node root) {
         Queue<Node> q = new LinkedList<>();
         q.add(root);
@@ -324,6 +336,35 @@ public class Binary_Tree {
         parent.left = newNode;
 
         else parent.right = newNode;
+
+        return root;
+    }
+
+
+    //  deletion 
+
+    public static Node deleteNode(Node root, int key){
+        if(root==null){
+            return root;
+        }
+
+        if(key<root.data){
+            root.left = deleteNode(root.left, key);
+        }else if(key>root.data){
+            root.right = deleteNode(root.right, key)
+        }else{
+            if(root.left ==null)
+            return  root.right;
+
+            else if(root.right==null)
+            return root.left;
+
+
+            root.data = minValue(root.right);
+
+            root.right = deleteNode(root.right, root.data);
+
+        }
 
         return root;
     }
