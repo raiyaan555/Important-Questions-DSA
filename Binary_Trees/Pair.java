@@ -1,11 +1,13 @@
 package Binary_Trees;
 
+import Binary_Trees.Binary_Tree.Node;
+
 public class Pair {
  int ind;
- Node root;
+ TreeNode root;
 
- Pair(int ind, Node root){
+ Pair(int ind, Node root2){
     this.ind = ind;
-    this.root = root;
+    this.root = root2;
  }
 }
