@@ -88,7 +88,6 @@ public class Binary_Tree {
         return Math.max(root.data, Math.max(maxValue(root.left), maxValue(root.right)));
     }
 
-
     public static int minValue(Node root) {
         if (root == null) {
             return Integer.MAX_VALUE;
@@ -96,9 +95,6 @@ public class Binary_Tree {
 
         return Math.min(root.data, Math.min(minValue(root.left), minValue(root.right)));
     }
-
-
-
 
     static void printLevelOrder(Node root) {
         Queue<Node> q = new LinkedList<>();
@@ -198,7 +194,7 @@ public class Binary_Tree {
         while (!q.isEmpty()) {
             Pair curr = q.poll();
             map.put(curr.ind, curr.root.data);
-            
+
             if (curr.root.left != null) {
                 q.add(new Pair(curr.ind - 1, curr.root.left));
             }
@@ -218,15 +214,16 @@ public class Binary_Tree {
 
     }
 
-    Node prev =null, head =null;
+    Node prev = null, head = null;
 
-    void convertToDLL(Node root){
-        if(root==null){
+    void convertToDLL(Node root) {
+        if (root == null) {
             return;
         }
         convertToDLL(root.left);
-        if(prev==null) head=root;
-        else{
+        if (prev == null)
+            head = root;
+        else {
             root.left = prev;
             prev.right = root;
         }
@@ -236,112 +233,113 @@ public class Binary_Tree {
 
     }
 
-
-    static int diameter(Node root){
-        if(root==null){
+    static int diameter(Node root) {
+        if (root == null) {
             return 0;
         }
 
         int dleft = diameter(root.left);
         int dright = diameter(root.right);
 
-        int curr = height(root.left)+height(root.right)+1;
+        int curr = height(root.left) + height(root.right) + 1;
 
         return Math.max(curr, Math.max(dleft, dright));
 
     }
-    static int ans =0;
-    static int heightmodifiedDiameter(Node root){
+
+    static int ans = 0;
+
+    static int heightmodifiedDiameter(Node root) {
         if (root == null) {
             return 0;
         }
-        ans = Math.max(ans, 1+height(root.left)+height(root.right));
+        ans = Math.max(ans, 1 + height(root.left) + height(root.right));
 
         return Math.max(height(root.left), height(root.right)) + 1;
-    
-    }
 
+    }
 
     // lowest common ancestor
 
-
-    Node lowestCommonAncestor(Node root, int n1, int n2){
-        if(root ==null) return null;
-        if(root.data ==n1 || root.data ==n2) return root;
-
+    Node lowestCommonAncestor(Node root, int n1, int n2) {
+        if (root == null)
+            return null;
+        if (root.data == n1 || root.data == n2)
+            return root;
 
         Node left = lowestCommonAncestor(root.left, n1, n2);
         Node right = lowestCommonAncestor(root.right, n1, n2);
 
-        if(left==null) return right;
-        if(right==null) return left;
+        if (left == null)
+            return right;
+        if (right == null)
+            return left;
         return root;
     }
 
     // BST
 
-
-    boolean search(Node root, int x){
-        if(root==null){
+    boolean search(Node root, int x) {
+        if (root == null) {
             return false;
         }
-        if(root.data==x){
+        if (root.data == x) {
             return true;
         }
 
-        if(root.data>x){
+        if (root.data > x) {
             return search(root.left, x);
         }
         return search(root.right, x);
-        
+
     }
 
     // insert the values in a bst
 
-    Node insert(Node root, int key){
-        if(root==null){
+    Node insert(Node root, int key) {
+        if (root == null) {
             return new Node(key);
         }
 
-        if(root.data > key){
+        if (root.data > key) {
             root.left = insert(root.left, key);
-        }
-        else if(root.data<key){
+        } else if (root.data < key) {
             root.right = insert(root.right, key);
         }
 
         return root;
     }
 
-    Node insertIteratively(Nood root, int key){
+    Node insertIteratively(Nood root, int key) {
         Node newNode = new Node(key);
         Node curr = root;
         Node parent = null;
 
-        while(curr !=null){
+        while (curr != null) {
             parent = curr;
 
-            if(key<curr.data){
+            if (key < curr.data) {
                 curr = curr.left;
             }
 
-            else curr = curr.right;
+            else
+                curr = curr.right;
         }
 
-        if(parent == null){
+        if (parent == null) {
             parent = newNode;
         }
 
-        else if( key< parent.data)
-        parent.left = newNode;
+        else if (key < parent.data)
+            parent.left = newNode;
 
-        else parent.right = newNode;
+        else
+            parent.right = newNode;
 
         return root;
     }
 
-
-    //  deletion 
+    // deletion
 
     public static Node deleteNode(Node root, int key){
         if(root==null){
@@ -369,31 +367,6 @@ public class Binary_Tree {
         return root;
     }
 
-
-
-   
-
-    
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static void main(String[] args) {
 
         Node root = createTree();
@@ -410,6 +383,43 @@ public class Binary_Tree {
         printLevelOrder(root);
         printLeftViewUntil(root, null, 0);
 
+    }
+
+    boolean isBST(Node root) {
+        return isBSTUntil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+    }
+
+    boolean isBSTUntil(Node node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+
+        if (node.data < min || node.data > max) {
+            return false;
+        }
+
+        return (isBSTUntil(node.left, min, node.data-1)) 
+        && 
+        isBSTUntil(node.right, node.data+1, max);
+    }
+
+
+    boolean isBSTinOrder(Node node){
+        if(node!=null){
+            if(!isBST(node.left)){
+                return false;
+            }
+
+            if(prev != null && node.data <=prev.data){
+                return false;
+            }
+
+            prev = node;
+
+            return isBST(node.right);
+        }
+        return true;
     }
 
 }
