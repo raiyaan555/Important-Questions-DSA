@@ -502,6 +502,45 @@ public class Binary_Tree {
 
 }
 
+// print vertically 
+
+
+static ArrayList <Integer> verticalOrder(Node root){
+    Queue<Pair> q = new ArrayDeque<>();
+
+    Map<Integer, ArrayList<Integer>> map = new TreeMap<>();
+
+    q.add(new Pair(0, root));
+
+    while(!q.isEmpty()){
+        Pair curr = q.poll();
+
+        if(map.containsKey(curr.ind)){
+            map.get(curr.ind).add(curr.root.data);
+        }else{
+            ArrayList<Integer> temp = new ArrayList<>();
+            temp.add(curr.root.data);
+            map.put(curr.ind, temp);
+        }
+
+        if(curr.root.left !=null){
+            q.add(new Pair(curr.ind-1, curr.root.left));
+        }
+
+        if(curr.root.right!=null){
+            q.add(new Pair(curr.ind+1, curr.root.right));
+        }
+    }
+
+    ArrayList<Integer> ans = new ArrayList<>();
+    for(Map.Entry<Integer, ArrayList<Integer>> entry: map.entrySet())
+    {
+        ans.addAll(entry.getValue());
+    }
+    return ans;
+}
+
+
 class Node {
     Node left;
     Node right;
