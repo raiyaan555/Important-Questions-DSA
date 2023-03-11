@@ -385,6 +385,8 @@ public class Binary_Tree {
 
     }
 
+    // check for bst
+
     boolean isBST(Node root) {
         return isBSTUntil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
@@ -420,6 +422,28 @@ public class Binary_Tree {
             return isBST(node.right);
         }
         return true;
+    }
+
+    // floor
+
+    int findFloor(Node root, int key){
+        int ans = Integer.MAX_VALUE;
+
+        while(root!=null){
+            if(root.data==key){
+                return root.data;
+            }
+
+            if(root.data >key){
+                root = root.left;
+            }else{
+                ans=root.data;
+                root = root.right;
+            }
+        }
+
+        return ans;
+
     }
 
 }
