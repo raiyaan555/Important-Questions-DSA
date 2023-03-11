@@ -2,10 +2,12 @@ package Binary_Trees;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Binary_Tree {
@@ -465,6 +467,37 @@ public class Binary_Tree {
             }
         }
         return ans;
+    }
+
+
+
+    // Two sum in bst
+
+    int isPairPresent(Node root, int target){
+        Set<Integer> set = new HashSet<>();
+
+        boolean ans =  util(root, target, set);
+
+        return ans ? 1:0;
+
+        
+    }
+
+    public boolean util(Node root, int sum, Set<Integer> set){
+        if(root ==null){
+            return false;
+        }
+
+        if(util(root.left, sum, set)==true){
+            return true;
+        }
+
+        if(set.contains(sum-root.data)){
+            return true;
+        }
+        set.add(root.data);
+
+        return util(root.right, sum,set);
     }
 
 }
