@@ -518,6 +518,8 @@ static ArrayList <Integer> verticalOrder(Node root){
         if(map.containsKey(curr.ind)){
             map.get(curr.ind).add(curr.root.data);
         }else{
+
+            
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(curr.root.data);
             map.put(curr.ind, temp);
