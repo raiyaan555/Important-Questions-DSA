@@ -31,4 +31,18 @@ public class Heapify {
             heapify(a, n, i);
         }
     }
+
+
+    // Heap Sort
+
+    void HeapSort(int a[], int n){
+        for (int i = n; i>1; i--){
+            int temp = a[1];
+            a[1] = a[i];
+            a[i] = temp;
+
+            heapify(a, i-1, 1);
+
+        }
+    }
 }
