@@ -15,6 +15,9 @@ public class Delete_Heap {
 
             int larger = left > right ? 2 * i : 2 * i + 1;
 
+
+
+            
             if (a[i] < a[larger]) {
                 int temp = a[i];
                 a[i] = a[larger];
