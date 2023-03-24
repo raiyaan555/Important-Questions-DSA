@@ -1,40 +1,48 @@
 package Graphs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Detect_cycle_in_directed_graph {
 
-    private boolean dfsCheck(int node, ArrayList<ArrayList<Integer>> adj, int vis[], int pathVis[]){
-        vis[node]=1;
-        pathVis[node]=1;
+    boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj){
 
-        for(int i: adj.get(node)){
+        int[] indegree = new int[V];
 
-            if(vis[i]==0){
-                if(dfsCheck(i, adj, vis, pathVis)){
-                    return true;
+        for(int i=0; i<V;i++){
+            for(int j : adj.get(i)){
+                indegree[j]++;
+            }
+        }
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0){
+                q.add(i);
+            }
+        }
+
+        int topo[] = new int[V];
+
+        int c = 0; 
+        while(!q.isEmpty()){
+            int node = q.peek();
+            q.remove();
+            c++;
+
+            
+
+            for(int j: adj.get(node)){
+                indegree[j]--;
+                if(indegree[j]==0){
+                    q.add(j);
                 }
-
-            }
-            else if(pathVis[i]==1){
-                return true;
-            }
-
-        }
-
-        pathVis[node]=0;
-        return false;
-    }
-    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj){
-        int vis[] = new int[V];
-        int pathVis[] = new int[V];
-
-        for(int i = 0; i<V;i++){
-            if(vis[i]==0){
-                if(dfsCheck(i, adj, vis,pathVis)== true)
-                return true;
             }
         }
-        return false;
+        if(c!=V) return false;
+
+        return true;
     }
 }
