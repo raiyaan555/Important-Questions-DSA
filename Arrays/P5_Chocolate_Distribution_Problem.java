@@ -11,6 +11,7 @@ public class P5_Chocolate_Distribution_Problem {
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
+        
         System.out.println("Enter the number of students");
         int m = sc.nextInt();
 
