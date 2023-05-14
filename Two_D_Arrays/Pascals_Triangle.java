@@ -3,7 +3,7 @@ package Two_D_Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
-// optimal solution
+// optimal solution time complexity is O(n^2) while the space comlexity is 0(n);
 
 public class Pascals_Triangle {
     public List<Integer> findAns(int r) {
