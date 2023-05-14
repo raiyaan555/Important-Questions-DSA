@@ -1,9 +1,13 @@
 package Arrays;
+
+// optimal solution with time comlexity o(N) and space complexity O(1);
+
 public class P7_Next_Permutation {
     public static void main(String[] args) {
     int[] nums={3,2,1};
        nextPermutation(nums);
     }
+
 
     public static void  swap(int[]A, int i, int j){
         int temp =A[i];
