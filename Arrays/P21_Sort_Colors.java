@@ -2,7 +2,7 @@ package Arrays;
 
 public class P21_Sort_Colors {
 
-    // optimal sol O(N) with O(3) space complexity
+    // optimal sol O(N) with O(4) space complexity
 
 
 
