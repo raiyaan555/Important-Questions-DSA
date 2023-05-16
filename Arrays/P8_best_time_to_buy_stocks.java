@@ -1,6 +1,9 @@
 package Arrays;
 public class P8_best_time_to_buy_stocks {
 
+
+    // optimal solution with time complexity equal to O(n) and space complexity O(3)
+
     public static int maxProfit(int[] arr) {
 
         int a = Integer.MAX_VALUE;
@@ -23,7 +26,7 @@ public class P8_best_time_to_buy_stocks {
     }
 
     public static void main(String[] args) {
-        int[] nums = { 2, 4, 1 };
+        int[] nums = { 2, 4, 1};
         System.out.println(maxProfit(nums));
     }
 
