@@ -36,4 +36,27 @@ public class P20_Merge_Overlapping {
         int[][] nums = {{1,3},{2,6},{8,10},{15,18}};
         System.out.println(merge(nums));
     }
+
+// optimal soln of O(nlogn)+O(n) and space complexity is 0(n^2);
+
+    public int[][] merge2(int[][] intervals) {
+
+        Arrays.sort(intervals, (a,b)-> Integer.compare(a[0], b[0]));
+        ArrayList<int[]> lst = new ArrayList<>();
+    
+        int[] temp = intervals[0];
+    
+       for(int i = 1;i<intervals.length;i++){
+           if(temp[1]>=intervals[i][0]){
+               temp[1] = Math.max(temp[1], intervals[i][1]);
+           }else{
+               lst.add(temp);
+               temp = intervals[i];
+           }
+       }
+    
+       lst.add(temp);
+       return lst.toArray(new int[lst.size()][]);
+    
+        }
 }
