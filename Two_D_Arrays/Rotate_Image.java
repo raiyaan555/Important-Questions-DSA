@@ -4,33 +4,60 @@ public class Rotate_Image {
     public static void rotate(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
-        
 
-        for (int i = 0; i <n; i++) {
-            for (int j = i; j <m; j++) {
-               int temp = matrix[i][j];
-               matrix[i][j]=matrix[j][i];
-               matrix[j][i]=temp;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < m; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
         }
-        
-       
-        for (int i = 0; i <n; i++) {
-            int l =0;
-            int r =m-1;
 
-            while(l<r){
+        for (int i = 0; i < n; i++) {
+            int l = 0;
+            int r = m - 1;
+
+            while (l < r) {
                 int temp = matrix[i][l];
                 matrix[i][l] = matrix[i][r];
-                matrix[i][r]= temp;
+                matrix[i][r] = temp;
 
                 l++;
                 r--;
             }
-            
+
         }
     }
 
+    // optimal sol time complexity will be in any case be O(N*M) and space will be O(4)
+
+
+    public static void rotate2(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < m; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            int l = 0;
+            int r = m - 1;
+            while (l <= r) {
+
+                int temp = matrix[i][l];
+                matrix[i][l] = matrix[i][r];
+                matrix[i][r] = temp;
+
+                l++;
+                r--;
+            }
+        }
+    }
 
     public static void main(String[] args) {
         int[][] arr = new int[3][3];
