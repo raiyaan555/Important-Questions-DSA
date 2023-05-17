@@ -6,47 +6,52 @@ import java.util.Stack;
 
 public class Infix_To_PostFix {
 
-    public static String infixToPostfix(String exp) {
+    public static String infixToPostfix(String s) {
         {
-            Map<Character, Integer> priority = new HashMap<>();
-            priority.put('+', 1);
-            priority.put('-', 1);
-            priority.put('*', 2);
-            priority.put('/', 2);
-            priority.put('^', 3);
-            priority.put('(', 0);
+            HashMap<Character, Integer> map = new HashMap<>();
             Stack<Character> st = new Stack<>();
             String ans = "";
-
-            for (int i = 0; i < exp.length(); i++) {
-                char c = exp.charAt(i);
-
-                if (c == '(')
-                    st.push(c);
-
-                else if (c == ')') {
-                    while (st.peek() != '(')
-                        ans += st.pop();
-
-                    st.pop();
-                }
-
-                else if (c == '+' || c == '-' || c == '*' || c == '^' || c == '/') {
-                    while (!st.isEmpty() && priority.get(st.peek()) >= priority.get(c))
-                        ans += st.pop();
-
+            
+            map.put('+',1);
+            map.put('-',1);
+            map.put('*',2);
+            map.put('/',2);
+            map.put('^',3);
+            map.put('(',0);
+            
+            for(int i = 0; i<s.length(); i++){
+                char c = s.charAt(i);
+                
+                if(c=='('){
                     st.push(c);
                 }
-
-                else
-                    ans += c;
+                else if(c==')'){
+                    while(st.peek()!= '(')
+                        ans += st.pop();
+                        st.pop();
+                    
+                }
+                
+                else if(c=='+'||c=='-'||c=='/'||c=='*'||c=='^'){
+                    while(!st.isEmpty() && map.get(st.peek())>= map.get(c)){
+                        ans +=st.pop();
+                    }
+                    st.push(c);
+                }
+                
+                else{
+                    ans +=c;
+                }
             }
-
-            while (!st.isEmpty())
-                ans += st.pop();
-
+            
+            while(!st.isEmpty()){
+                ans+=st.pop();
+            }
             return ans;
         }
+
+
+       
 
     }
 
