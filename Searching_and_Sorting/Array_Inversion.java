@@ -1,5 +1,6 @@
 package Searching_and_Sorting;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Array_Inversion {
@@ -47,7 +48,65 @@ public class Array_Inversion {
             merged[k++] = right[j++];
         }
         return merged;
+
     }
+
+    
+
+    public static long merge(long arr[], int low, int mid, int high){
+        int left = low;
+        int right = high;
+        long invCount = 0;
+        ArrayList<Long> temp = new ArrayList<>();
+
+        while(left<=mid-1 && left<=high){
+            if(arr[left]<=arr[right]){
+                temp.add(arr[left]);
+                left++;
+            }
+            else{
+                temp.add(arr[right]);
+                right++;
+                invCount = invCount +(mid-left);
+            }
+        }
+
+        while(left<=mid)
+        {
+            temp.add(arr[left++]);
+        }
+
+         while(right<=high)
+        {
+            temp.add(arr[right++]);
+        }
+        
+
+        for(int i =low; i<high;i++){
+            arr[i] = temp.get(i-low);
+        }
+
+        return invCount;
+    }
+
+    public static long mergedSort(long arr[], int low, int high){
+        int mid;
+        long invCount =0;
+        if(high>low) {
+            mid = (low+high)/2;
+            invCount += mergedSort(arr,low,mid);
+            invCount += mergedSort(arr,mid+1,high);
+            invCount += merge(arr,low,mid,high);
+        }
+        return invCount;
+    }
+
+    public static long getInversions(long arr[], int n) {
+        // Write your code here.
+
+        return mergedSort(arr,0,n-1);
+    }
+}
 
 
     // public static boolean isNotSame(long[] arr){
