@@ -106,7 +106,7 @@ public class Array_Inversion {
 
         return mergedSort(arr,0,n-1);
     }
-}
+
 
 
     // public static boolean isNotSame(long[] arr){
@@ -175,3 +175,4 @@ public class Array_Inversion {
         System.out.println(inversionCount(arr, arr.length));
     }
 }
+
