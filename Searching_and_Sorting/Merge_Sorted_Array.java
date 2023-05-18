@@ -1,35 +1,74 @@
 package Searching_and_Sorting;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Merge_Sorted_Array {
 
-    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+    private static void merge(int[] arr, int low, int mid, int high) {
+        ArrayList<Integer> temp = new ArrayList<>(); // temporary array
+        int left = low;      // starting index of left half of arr
+        int right = mid + 1;   // starting index of right half of arr
 
-        int i = m - 1;
-        int j = n - 1;
-        int k = m + n - 1;
+        //storing elements in the temporary array in a sorted manner//
 
-        while (i >= 0 && j >= 0) {
-            if (nums1[i] >= nums2[j]) {
-                nums1[k--] = nums1[i--];
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right]) {
+                temp.add(arr[left]);
+                left++;
             } else {
-                nums1[k--] = nums2[j--];
+                temp.add(arr[right]);
+                right++;
             }
         }
-        while (j >= 0) {
-            nums1[j] = nums2[j--];
+
+        // if elements on the left half are still left //
+
+        while (left <= mid) {
+            temp.add(arr[left]);
+            left++;
+        }
+
+        //  if elements on the right half are still left //
+        while (right <= high) {
+            temp.add(arr[right]);
+            right++;
+        }
+
+        // transfering all elements from temporary to arr //
+        for (int i = low; i <= high; i++) {
+            arr[i] = temp.get(i - low);
         }
     }
 
-    public static void main(String[] args) {
-        int[] nums1 = { 1, 2, 3, 0, 0, 0 };
-        int m = 3;
-        int[] nums2 = { 2, 5, 6 };
-        int n = 3;
-        merge(nums1, m, nums2, n);
-
-        for(int i = 0; i<nums1.length;i++){
-            System.out.print(nums1[i]+" ");
-        }
-
+    public static void mergeSort(int[] arr, int low, int high) {
+        if (low >= high) return;
+        int mid = (low + high) / 2 ;
+        mergeSort(arr, low, mid);  // left half
+        mergeSort(arr, mid + 1, high); // right half
+        merge(arr, low, mid, high);  // merging sorted halves
     }
+
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = 7;
+        int arr[] = { 9, 4, 7, 6, 3, 1, 5 };
+        System.out.println("Before sorting array: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        Merge_Sorted_Array.mergeSort(arr, 0, n - 1);
+        System.out.println("After sorting array: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+
 }
+
+
+
