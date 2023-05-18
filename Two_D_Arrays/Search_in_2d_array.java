@@ -25,4 +25,23 @@ public class Search_in_2d_array {
         }
         return false;
     }
+
+    // this is the answer for the gfg code which gives the particular result;
+
+
+    static boolean search(int matrix[][], int n, int m, int x) 
+	{  
+	    int i = 0; int j = m-1;
+	    
+	    while(i<n && j>=0){
+	        if(x==matrix[i][j]){
+	            return true;
+	        }else if(x>matrix[i][j]){
+	            i++;
+	        }else{
+	            j--;
+	        }
+	    }
+	    return false;
+	} 
 }
