@@ -27,4 +27,31 @@ public class P28_Find_Pow {
         
         System.out.println(myPow(2, -2));
     }
+
+
+
+    // optimal solution O(logn)
+
+
+    public static double myPow2(double x, int n) {
+        if(n>=0){
+         return myCalc(x,n);
+        }else{
+         return 1/myCalc(x,n);
+        }
+     }
+ 
+     private static double myCalc(double x, int n) {
+        if(n==0){
+         return 1;
+        }
+        double ans = myCalc(x,n/2);
+ 
+        if(n%2!=0){
+         return x*ans*ans;
+        }else{
+         return ans*ans;
+        }
+ 
+     }
 }
