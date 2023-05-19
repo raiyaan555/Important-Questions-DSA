@@ -32,4 +32,20 @@ public class Unique_Paths {
     }
         return paths(0,0,m,n,dp);
     }
+
+    /*
+    this is the third and best solution this uses combination principles i.e is n+m-2 C n-1 or n+m-2 C m-1 
+    will give you the answer also time complexity is linear and space also linear; the double is necessary for the right answer
+    */ 
+    public int uniquePaths3(int m, int n) {
+
+        int N = m+n-2;
+        int r = m-1;
+        double ans = 1;
+
+        for(int i =1; i<=r;i++){
+            ans = ans *(N-r+i)/i;
+        }
+        return (int)ans;
+    }
 }
