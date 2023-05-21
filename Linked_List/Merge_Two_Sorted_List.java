@@ -1,6 +1,7 @@
 package Linked_List;
 
 public class Merge_Two_Sorted_List {
+    // merge two sorted list
     public class ListNode {
         int val;
         ListNode next;
