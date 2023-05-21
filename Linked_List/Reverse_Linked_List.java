@@ -2,6 +2,8 @@ package Linked_List;
 import java.util.*;
 public class Reverse_Linked_List {
 
+    // reverse a linked list
+    
     public class ListNode {
              int val;
              ListNode next;
