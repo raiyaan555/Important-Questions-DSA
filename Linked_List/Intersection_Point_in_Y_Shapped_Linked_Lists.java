@@ -1,5 +1,7 @@
 package Linked_List;
 
+// y linked intersection point
+
 public class Intersection_Point_in_Y_Shapped_Linked_Lists {
     class Node {
         int data;
