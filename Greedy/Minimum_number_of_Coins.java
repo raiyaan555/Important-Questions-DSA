@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Minimum_number_of_Coins {
+
+    // O(n*M) and space is O(N);
+    
     static List<Integer> minPartition(int N) {
         List<Integer> list = new ArrayList<>();
         // code here
