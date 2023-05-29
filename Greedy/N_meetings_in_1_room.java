@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class N_meetings_in_1_room {
     public static int maxMeetings(int start[], int end[], int n)
     {
-        // time complexity is O(nlogn) space is O(2N);
+        // time complexity is O(nlogn) space is O(2N); also a classical example of activity selection problem
        
         int meeting[][]=new int[n][2];
         for(int i=0;i<n;i++){
