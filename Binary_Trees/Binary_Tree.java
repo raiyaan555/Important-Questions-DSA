@@ -36,6 +36,8 @@ public class Binary_Tree {
 
     }
 
+    // recursive approach to solve inOrder time complexity is going to O(N) and space will be O(N)
+
     static void inOrder(Node root) {
         if (root == null) {
             return;
