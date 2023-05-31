@@ -4,10 +4,12 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class Binary_Tree {
@@ -57,6 +59,29 @@ public class Binary_Tree {
         System.out.print(root.data + " ");
         inOrder(root.left);
         inOrder(root.right);
+    }
+
+
+    // iterative approach to solve preOrder traversal
+
+
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+
+        if(root==null) return ans;
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+
+        while(!st.isEmpty()){
+
+            root = st.pop();
+            ans.add(root.val);
+            if(root.right!=null) st.push(root.right);
+            if(root.left!=null) st.push(root.left);
+
+        }
+        return ans;
     }
 
     // recursive approach to solve Postorder time complexity is again O(N) and spce will be O(N)
