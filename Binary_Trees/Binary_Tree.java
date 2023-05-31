@@ -47,6 +47,8 @@ public class Binary_Tree {
         inOrder(root.right);
     }
 
+    //  recursive approach to solve Preorder time complexity is again O(N) and spce will be O(N)
+
     static void PreOrder(Node root) {
         if (root == null) {
             return;
