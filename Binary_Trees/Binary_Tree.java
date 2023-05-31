@@ -59,6 +59,8 @@ public class Binary_Tree {
         inOrder(root.right);
     }
 
+    // recursive approach to solve Postorder time complexity is again O(N) and spce will be O(N)
+
     static void PostOrder(Node root) {
         if (root == null) {
             return;
