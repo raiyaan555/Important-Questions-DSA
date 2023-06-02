@@ -49,9 +49,36 @@ public class Binary_Tree {
         inOrder(root.right);
     }
 
+    // iterative approach to solve inOrder
+
+
+    public List<Integer> inorderTraversal(TreeNode node) {
+        List<Integer> ans = new ArrayList<>();
+
+        Stack<TreeNode> st = new Stack<>();
+
+        while(true){
+            if(node!=null){
+                st.push(node);
+                node = node.left;
+            }
+            else{
+                if(st.isEmpty()) break;
+
+                node = st.pop();
+                ans.add(node.val);
+                node = node.right;   
+             }
+        }
+
+        return ans;
+
+        
+    }
+
     //  recursive approach to solve Preorder time complexity is again O(N) and spce will be O(N)
 
-    
+
     static void PreOrder(Node root) {
         if (root == null) {
             return;
