@@ -125,6 +125,31 @@ public class Binary_Tree {
 
     }
 
+    // iterative approach to solve postOrder traversal using 2 stacks
+
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+         if (root==null) return ans;
+
+        Stack<TreeNode> st1 = new Stack<>();
+        Stack<TreeNode> st2 = new Stack<>();
+
+        
+        st1.add(root);
+
+        while(!st1.isEmpty()){
+            root = st1.pop();
+            st2.add(root);
+            if(root.left!=null) st1.push(root.left);
+            if(root.right!=null) st1.push(root.right);
+        }
+
+        while(!st2.isEmpty()){
+            ans.add(st2.pop().val);
+        }
+        return ans;
+    }
+
     public static int height(Node root) {
         if (root == null) {
             return 0;
