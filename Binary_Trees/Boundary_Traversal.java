@@ -1,6 +1,7 @@
 package Binary_Trees;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Boundary_Traversal {
     static Boolean isLeaf(TreeNode root) {
@@ -21,19 +22,15 @@ public class Boundary_Traversal {
 
     static void addRightBoundary(TreeNode root, ArrayList<Integer> res) {
         TreeNode cur = root.right;
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
+        Stack<Integer> tmp = new Stack<>();
         while (cur != null) {
-            if (isLeaf(cur) == false)
-                tmp.add(cur.data);
-            if (cur.right != null)
-                cur = cur.right;
-            else
-                cur = cur.left;
+            if (isLeaf(cur) == false) tmp.push(cur.data);
+            if (cur.right != null) cur = cur.right;
+            else cur = cur.left;
         }
-        int i;
-        for (i = tmp.size() - 1; i >= 0; --i) {
-            res.add(tmp.get(i));
-        }
+        while(!tmp.isEmpty()){
+			res.add(tmp.pop());
+		}
     }
 
     static void addLeaves(TreeNode root, ArrayList<Integer> res) {
