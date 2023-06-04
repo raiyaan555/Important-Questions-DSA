@@ -16,12 +16,18 @@ public class Left_Right_View {
         
         returnLeftView(root.left, ans,i+1);
         returnLeftView(root.right, ans,i+1);
+
+
+        // returning the right view 
+
+        // returnLeftView(root.right, ans,i+1);
+        // returnLeftView(root.left, ans,i+1);
     }
     
-    //Function to return list containing elements of left view of binary tree.
+    
     ArrayList<Integer> leftView(Node root)
     {
-      // Your code here
+      
       
       
       ArrayList<Integer> ans = new ArrayList<>();
