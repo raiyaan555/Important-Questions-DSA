@@ -2,6 +2,8 @@ package Graphs;
 
 import java.util.ArrayList;
 
+// The time complexity is o(N)+O(2E) space complexity is O(3N) ;
+
 public class DFS {
     public static void dfs(int node, boolean vis[], ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> ls) {
         vis[node] = true;
