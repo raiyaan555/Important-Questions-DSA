@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// time complexity is equal to the O(n)+O(2E) and space is o(3N)
 public class BFS {
     
     public ArrayList<Integer> bfsOfGraph(int v, ArrayList<ArrayList<Integer>> adj){
