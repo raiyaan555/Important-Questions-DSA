@@ -5,79 +5,27 @@ import java.util.*;
 
 class No_of_provinces {
     // dfs traversal function
-    static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
-
-        // code here
-
-        boolean[] vis = new boolean[V + 1];
-
-        int province = 0;
-
-        Queue<Integer> q = new LinkedList<Integer>();
-
-        for (int i = 1; i <= V; i++)
-
-        {
-
-            if (vis[i] != true)
-
-            {
-
-                province++;
-
-                q.add(i);
-
-                while (!q.isEmpty())
-
-                {
-
-                    int node = q.poll();
-
-                    for (int j = 0; j < adj.get(node - 1).size(); j++)
-
-                    {
-
-                        if (adj.get(node - 1).get(j) == 1 && vis[j + 1] != true)
-
-                        {
-
-                            vis[j + 1] = true;
-
-                            q.add(j + 1);
-
-                        }
-
-                    }
-
-                }
-
-            }
-
+    private void dfs(int node, boolean vis[], int adj[][]) {
+        vis[node] = true;
+        for(int i=0; i<adj[node].length; i++){
+            if( i != node && adj[node][i] == 1 && vis[i] == false ) dfs(i, vis, adj);
         }
-
-        return province;
-
     }
 
-    public static void main(String[] args) {
+    public int findCircleNum(int[][] isConnected) {
+        boolean vis[] = new boolean[isConnected.length];
+        int count = 0;
 
-        // adjacency matrix
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
-
-        adj.add(new ArrayList<Integer>());
-        adj.get(0).add(0, 1);
-        adj.get(0).add(1, 0);
-        adj.get(0).add(2, 1);
-        adj.add(new ArrayList<Integer>());
-        adj.get(1).add(0, 0);
-        adj.get(1).add(1, 1);
-        adj.get(1).add(2, 0);
-        adj.add(new ArrayList<Integer>());
-        adj.get(2).add(0, 1);
-        adj.get(2).add(1, 0);
-        adj.get(2).add(2, 1);
-
-        No_of_provinces ob = new No_of_provinces();
-        System.out.println(No_of_provinces.numProvinces(adj, 3));
+        for(int i = 0; i<isConnected.length;i++){
+            if(!vis[i]){
+                count++;
+                dfs(i,vis,isConnected);
+            }
+        }
+        return count;
     }
+
+    
+
+    
 };
