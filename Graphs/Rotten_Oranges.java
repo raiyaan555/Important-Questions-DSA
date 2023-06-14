@@ -15,6 +15,8 @@ class Pair {
     }
 }
 
+// O(n*M) for both space and time
+
 public class Rotten_Oranges {
     public int orangesRotting(int[][] grid) {
         // figure out the grid size
