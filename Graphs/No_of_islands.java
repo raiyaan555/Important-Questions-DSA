@@ -2,6 +2,9 @@ package Graphs;
 import java.util.*;
 
 public class No_of_islands {
+
+    // time complexity is O(N2 * 9) +O(n2) == O(n2); space complexity is O(n2)+O(n2);
+
     private void bfs(int ro, int co, int[][] vis, char[][] grid) {
         vis[ro][co] = 1; 
         Queue<Pair> q = new LinkedList<Pair>();
