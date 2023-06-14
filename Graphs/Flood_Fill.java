@@ -1,6 +1,13 @@
 package Graphs;
 
 public class Flood_Fill {
+
+    // the time complexity is 4*N*M and space is O(n*M too with auxiallry stack space)
+
+    // important algo
+
+
+
     private void dfs(int row, int col, int [][] ans, int [][]image, int newColor, int delRow[], int delCol[], int iniColor){
         ans[row][col] = newColor;
         int n = image.length;
