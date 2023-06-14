@@ -4,6 +4,8 @@ import java.util.*;
 
 public class DFS_Detect_Cycle {
 
+    // dfs cycle detection
+
     private boolean dfs(int node, int parent, int vis[], ArrayList<ArrayList<Integer>> adj) {
         vis[node] = 1;
 
