@@ -6,6 +6,8 @@ import java.util.Queue;
 
 public class Detect_cycle_in_directed_graph {
 
+    //mark visit as 1 and mark visit as 2
+
      class Pair{
         int first;
         int second;
