@@ -2,6 +2,8 @@ package Graphs;
 
 import java.util.ArrayList;
 
+// the time complexity is o(N*M)  and the soace is o(N*M);
+
 public class Bipartite_graph_dfs {
     private boolean dfs(int node, int col, int[] color, ArrayList<ArrayList<Integer>> adj){
 
