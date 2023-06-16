@@ -4,47 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Eventual_safe_states {
-    private boolean dfsCheck(int node, ArrayList<ArrayList<Integer>> adj, int vis[], int pathVis[], int[] check) {
-        vis[node] = 1;
-        pathVis[node] = 1;
-        check[node] = 0;
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        int n = graph.length;
+        int visit[] = new int[n];
+        int pathVisit[] = new int[n];
+        int check[] = new int[n];
 
-        for (int i : adj.get(node)) {
-
-            if (vis[i] == 0) {
-                if (dfsCheck(i, adj, vis, pathVis, check)) {
-                    return true;
-                }
-
-            } else if (pathVis[i] == 1) {
-                return true;
+        for (int i = 0; i < n; i++) {
+            if (visit[i] == 0) {
+                dfs(i, visit, pathVisit, check, graph);
             }
-
         }
 
-        check[node] = 1;
-        pathVis[node] = 0;
-        return false;
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (check[i] == 1)
+                ans.add(i);
+        }
+        return ans;
+
     }
 
-    List<Integer> eventualSafeNodes(int V, ArrayList<ArrayList<Integer>> adj) {
-        int vis[] = new int[V];
-        int pathVis[] = new int[V];
-        int check[] = new int[V];
-
-        for (int i = 0; i < V; i++) {
-            if (vis[i] == 0) {
-                dfsCheck(i, adj, vis, pathVis, check);
+    public boolean dfs(int i, int visit[], int pathVisit[], int check[], int[][] graph) {
+        visit[i] = 1;
+        pathVisit[i] = 1;
+        check[i] = 0;
+        // Traverse for the adjacent node
+        for (int e : graph[i]) {
+            // when the node is not visited
+            if (visit[e] == 0) {
+                if (dfs(e, visit, pathVisit, check, graph)) {
+                    return true;
+                }
             }
+            // if the node has previously visited
+            // but it has to be on the same path.
+            else if (pathVisit[e] == 1)
+                return true;
         }
-        List<Integer> safeNodes = new ArrayList<>();
-
-        for (int i = 0; i < V; i++) {
-            if (check[i] == 1)
-                safeNodes.add(i);
-        }
-
-        return safeNodes;
+        check[i] = 1;
+        pathVisit[i] = 0;
+        return false;
     }
 
 }
