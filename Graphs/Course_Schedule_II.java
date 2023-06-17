@@ -1,55 +1,43 @@
 package Graphs;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Course_Schedule_II {
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
+    public int[] findOrder(int numCourses, int[][] prereq) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++)
+            graph.add(new ArrayList<>());
+
         int[] indegree = new int[numCourses];
-
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-
-        for(int i=0; i<numCourses; i++){
-            adj.add(new ArrayList<>());
-        }
-        for(int i=0; i<prerequisites.length; i++){
-            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        for (int i = 0; i < prereq.length; i++) {
+            graph.get(prereq[i][1]).add(prereq[i][0]);
+            indegree[prereq[i][0]]++;
         }
 
-        for(int i =0; i<numCourses;i++){
-             for(int j :adj.get(i))
-             {
-                 indegree[j]++;
-             }
-        }
+        Queue<Integer> que = new ArrayDeque<>();
+        for (int i = 0; i < indegree.length; i++)
+            if (indegree[i] == 0)
+                que.add(i);
+        int[] ans = new int[numCourses];
+        int idx = 0;
 
-        Queue<Integer> q= new LinkedList<>();
-
-        for(int i =0; i<numCourses;i++){
-            if(indegree[i]==0){
-                q.add(i);
+        while (que.size() != 0) {
+            int rem = que.poll();
+            ans[idx++] = rem;
+            List<Integer> get = graph.get(rem);
+            for (int ele : get) {
+                indegree[ele]--;
+                if (indegree[ele] == 0)
+                    que.add(ele);
             }
         }
-
-        
-        int c = 0; 
-
-        while(!q.isEmpty()){
-            int temp = q.remove();
-            c++;
-
-            for(int it:adj.get(temp)){
-                indegree[it]--;
-                if(indegree[it]==0){
-                    q.add(it);
-                }
-            }
-        }
-
-        if(c==numCourses) return true;
-        return false;
-
-
+        if (idx != numCourses)
+            return new int[0];
+        else
+            return ans;
     }
 }
