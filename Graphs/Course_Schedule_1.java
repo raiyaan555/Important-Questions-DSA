@@ -6,49 +6,51 @@ import java.util.List;
 import java.util.Queue;
 
 public class Course_Schedule_1 {
-    public boolean isPossible(int V, int[][] prerequistes){
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[] indegree = new int[numCourses];
+
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i= 0; i<V;i++){
+
+        for(int i=0; i<numCourses; i++){
             adj.add(new ArrayList<>());
         }
-
-        int n = prerequistes.length;
-
-        for(int i = 0; i<n;i++){
-            adj.get(prerequistes[i][0]).add(prerequistes[i][1]);
+        for(int i=0; i<prerequisites.length; i++){
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
         }
 
-
-        int indegree[] = new int [V];
-
-        for(int i=0; i<V;i++){
-            for(int j: adj.get(i)){
-                indegree[j]++;
-            }
+        for(int i =0; i<numCourses;i++){
+             for(int j :adj.get(i))
+             {
+                 indegree[j]++;
+             }
         }
 
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q= new LinkedList<>();
 
-        for(int i=0; i<V;i++){
+        for(int i =0; i<numCourses;i++){
             if(indegree[i]==0){
                 q.add(i);
             }
         }
 
-        List<Integer> topo = new ArrayList<Integer>();
+        
+        int c = 0; 
 
         while(!q.isEmpty()){
-            int node = q.peek();
-            q.remove();
-            topo.add(node);
+            int temp = q.remove();
+            c++;
 
-            for(int i: adj.get(node)){
-                indegree[i]--;
-                if(indegree[i]==0)q.add(i);
+            for(int it:adj.get(temp)){
+                indegree[it]--;
+                if(indegree[it]==0){
+                    q.add(it);
+                }
             }
         }
-        if(topo.size()==V) return true;
 
+        if(c==numCourses) return true;
         return false;
+
+
     }
 }
