@@ -3,6 +3,7 @@ package Graphs;
 import java.util.ArrayList;
 import java.util.Stack;
 
+// time complexity is O(V+E) and space is stack space O(N);
 public class Topological_Sort {
     private static void dfs(int node, int vis[], Stack<Integer> st, ArrayList<ArrayList<Integer>> adj){
 
