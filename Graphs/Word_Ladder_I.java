@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Word_Ladder_I {
+    // good question
     public static void main(String[] args) throws IOException {
         String startWord = "der", targetWord = "dfs";
         String[] wordList = {
