@@ -23,7 +23,7 @@ public class Binary_Tree {
         int data = sc.nextInt();
 
         if (data == -1) {
-            return null;
+            return null; 
         }
 
         root = new Node(data);
@@ -48,6 +48,8 @@ public class Binary_Tree {
         System.out.print(root.data + " ");
         inOrder(root.right);
     }
+
+    // 10
 
     // iterative approach to solve inOrder
 
