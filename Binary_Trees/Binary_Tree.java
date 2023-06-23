@@ -33,6 +33,7 @@ public class Binary_Tree {
 
         System.out.println("Enter right for " + data);
         root.right = createTree();
+        
 
         return root;
 
