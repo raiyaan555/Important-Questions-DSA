@@ -1,3 +1,6 @@
+package Dynamic_Programming;
+
+import java.util.Arrays;
 public class Coin_Change {
     public int f(int i, int T, int[]coins, int[][] dp){
         if(i==0){
