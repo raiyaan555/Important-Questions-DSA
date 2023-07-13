@@ -9,6 +9,7 @@ public class Strongly_Connected_Components_Kosarajus_Algo {
         boolean[] vis = new boolean[V];
         Stack<Integer> st = new Stack<>(); // To store the nodes in decreasing order of finish time
 
+        
         for (int i = 0; i < V; i++) {
             if (vis[i] == false)
                 dfs(i, vis, st, adj);
