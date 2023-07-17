@@ -9,66 +9,95 @@ import java.util.TreeMap;
 
 public class Vertical_Traversal {
 
-    public static List<List<Integer>> findVertical(TreeNode root) {
-        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
-        Queue<Tuple> q = new LinkedList<Tuple>();
-        q.offer(new Tuple(root, 0, 0));
-        while (!q.isEmpty()) {
-            Tuple tuple = q.poll();
-            TreeNode node = tuple.node;
-            int x = tuple.row;
-            int y = tuple.col;
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-            if (!map.containsKey(x)) {
-                map.put(x, new TreeMap<>());
-            }
-            if (!map.get(x).containsKey(y)) {
-                map.get(x).put(y, new PriorityQueue<>());
-            }
-            map.get(x).get(y).offer(node.data);
+        TreeNode() {
+        }
 
-            if (node.left != null) {
-                q.offer(new Tuple(node.left, x - 1, y + 1));
-            }
-            if (node.right != null) {
-                q.offer(new Tuple(node.right, x + 1, y + 1));
-            }
+        TreeNode(int val) {
+            this.val = val;
         }
-        List<List<Integer>> list = new ArrayList<>();
-        for (TreeMap<Integer, PriorityQueue<Integer>> ys : map.values()) {
-            list.add(new ArrayList<>());
-            for (PriorityQueue<Integer> nodes : ys.values()) {
-                while (!nodes.isEmpty()) {
-                    list.get(list.size() - 1).add(nodes.poll());
-                }
-            }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
-        return list;
     }
 
-    public static void main(String args[]) {
+    class Triple {
+        TreeNode node;
+        int vertical;
+        int level;
 
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(4);
-        root.left.right = new TreeNode(10);
-        root.left.left.right = new TreeNode(5);
-        root.left.left.right.right = new TreeNode(6);
-        root.right = new TreeNode(3);
-        root.right.left = new TreeNode(9);
-        root.right.right = new TreeNode(10);
-
-        List<List<Integer>> list = new ArrayList<>();
-        list = findVertical(root);
-
-        System.out.println("The Vertical Traversal is : ");
-        for (List<Integer> it : list) {
-            for (int nodeVal : it) {
-                System.out.print(nodeVal + " ");
-            }
-            System.out.println();
+        Triple(TreeNode node, int level, int vertical) {
+            this.node = node;
+            this.vertical = vertical;
+            this.level = level;
         }
+    }
 
+    class Solution {
+        public List<List<Integer>> verticalTraversal(TreeNode root) {
+            List<List<Integer>> ans = new ArrayList<>();
+
+            // map<vertical,map<level,pq<int>>>
+
+            TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
+            Queue<Triple> q = new LinkedList<>();
+
+            // Insert Values into the q <node, vertical, level>
+            q.offer(new Triple(root, 0, 0));
+
+            while (!q.isEmpty()) {
+                Triple triple = q.poll();
+                TreeNode node = triple.node;
+                int x = triple.vertical;
+                int y = triple.level;
+
+                // Check for the vertical to be 0 and put map
+
+                if (!map.containsKey(x)) {
+                    map.put(x, new TreeMap<>());
+                }
+
+                // Check for the level to be 0 and put pq
+                if (!map.get(x).containsKey(y)) {
+                    map.get(x).put(y, new PriorityQueue<>());
+                }
+
+                // offer node here and put values of node
+
+                map.get(x).get(y).offer(node.val);
+
+                // left check and right check and commute accordingly
+
+                if (node.left != null) {
+                    q.offer(new Triple(node.left, y + 1, x - 1));
+                }
+                if (node.right != null) {
+                    q.offer(new Triple(node.right, y + 1, x + 1));
+                }
+            }
+            // go inside the map to get the values
+
+            for (TreeMap<Integer, PriorityQueue<Integer>> i : map.values()) {
+                // add a new arraylist
+                ans.add(new ArrayList<>());
+                for (PriorityQueue<Integer> j : i.values()) {
+                    while (!j.isEmpty()) {
+                        // while you add the arraylist we need to keep adding the values associated with
+                        // the given pq so we add at the end of the new arraylist.
+                        ans.get(ans.size() - 1).add(j.poll());
+                    }
+                }
+            }
+
+            return ans;
+        }
     }
 }
 
