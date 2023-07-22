@@ -5,15 +5,7 @@ public class Distinct_Subsequences {
         int prime =(int)(Math.pow(10,9)+7);
         public int numDistinct(String s, String t) {
             int dp[] = new int[t.length()+1];
-    
-    
-    
-          
                 dp[0] = 1;
-
-            
-    
-            
                 
             for(int i = 1;i<=s.length();i++){
                 for(int j=t.length();j>=1;j--){
