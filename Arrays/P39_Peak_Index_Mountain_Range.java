@@ -10,7 +10,6 @@ public class P39_Peak_Index_Mountain_Range {
                 mid = (hi + lo) / 2;
                 if (arr[mid] < arr[mid + 1]) {
                     lo = mid + 1;
-                    ;
                 } else {
                     hi = mid;
                 }
