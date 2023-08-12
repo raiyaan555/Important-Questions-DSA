@@ -70,6 +70,7 @@ static int countWays2(int m, int n){
     
 }
 
+
 public static void main(String args[]) {
 
   int m=3;
