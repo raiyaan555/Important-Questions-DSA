@@ -23,6 +23,7 @@ public class Capacity_to_ship_packages_within_D_days {
             }
             return new int[]{lower,upper};
         }
+        
         public int shipWithinDays(int[] weights, int days) {
             int left = findLimits(weights)[0];
             int right = findLimits(weights)[1];
