@@ -2,19 +2,25 @@ package Recursion;
 
 public class Reverse_Array {
    
-    public static void reveseArray(int left, int right,int a[]){
+    public static void reveseArray(int left, int right,char[]a){
         if(left>=right)
         return;
-        int temp = a[left];
+        char temp = a[left];
         a[left] = a[right];
         a[right] = temp;
         reveseArray(left+1, right-1, a);
     }
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,5,6};
+        String s = "NITINI";
+        char[] a = s.toCharArray();
         reveseArray(0,a.length-1,a);
-        for(int i = 0; i<a.length;i++){
-            System.out.print(a[i]+" ");
+        char []b = s.toCharArray();
+        for(int i = 0; i<b.length;i++){
+            if(b[i]!=a[i]) {
+                System.out.println("false");
+                return;
+            } 
         }
+        System.out.println("true");
     }
 }
