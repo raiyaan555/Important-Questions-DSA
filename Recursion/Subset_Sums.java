@@ -1,26 +1,25 @@
 package Recursion;
 
-import java.util.ArrayList;
-
+import java.util.* ;
+import java.io.*; 
 public class Subset_Sums {
-    void getSubsetSum(int index, int sum, ArrayList<Integer> arr, int N, ArrayList<Integer> ans) {
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        // Write your code here..
 
-        if (index == N) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        f(0,0,num,ans);
+        Collections.sort(ans);
+        return ans;
+    }
+
+    public static void f(int i,int sum,int arr[], ArrayList<Integer> ans){
+        if(i==arr.length){
             ans.add(sum);
             return;
         }
-
-        getSubsetSum(index + 1, sum + arr.get(index), arr, N, ans);
-        getSubsetSum(index + 1, sum, arr, N, ans);
-
+        f(i+1,sum+arr[i],arr,ans);
+        f(i+1,sum,arr,ans);
     }
 
-    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N) {
-        // code here
-
-        ArrayList<Integer> ans = new ArrayList<>();
-        getSubsetSum(0, 0, arr, N, ans);
-        return ans;
-
-    }
 }
+
