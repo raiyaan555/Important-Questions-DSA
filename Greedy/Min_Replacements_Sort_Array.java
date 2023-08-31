@@ -9,6 +9,7 @@ public class Min_Replacements_Sort_Array {
     
             // Traverse the array in reverse order
             for (int i = n - 2; i >= 0; --i) {
+                
                 if (nums[i] > last) {  // If the current element needs replacement
                     int t = nums[i] / last;  // Calculate how many times the element needs to be divided
                     if (nums[i] % last != 0) {
