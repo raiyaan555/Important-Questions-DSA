@@ -16,6 +16,7 @@ public class Count_Distinct_Substrings {
     void put(char ch, Count_Distinct_Substrings node) {
         links[ch - 'a'] = node;
     }
+    
 
     void setEnd() {
         flag = true;
