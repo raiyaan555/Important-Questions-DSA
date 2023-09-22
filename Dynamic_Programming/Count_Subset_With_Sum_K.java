@@ -5,8 +5,6 @@ import java.util.*;
 public class Count_Subset_With_Sum_K {
 
     class TUF {
-
-        
         static int findWays(int[] num, int k) {
             int n = num.length;
 
