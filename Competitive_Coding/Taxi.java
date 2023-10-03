@@ -17,11 +17,13 @@ public class Taxi {
         int count = 0;
         Arrays.sort(a);
 
-        for(int i=0;i<a.length-1;i++){
+        for(int i=a.length-1;i>=0;i--){
             sum+=a[i];
-            if(sum+a[i+1]>limit){
+            if(sum>=limit){
                 count++;
                 sum=0;
+            }else{
+                
             }
         }
         if(a[n-1]>=4){
