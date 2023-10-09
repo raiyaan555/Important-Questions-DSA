@@ -7,6 +7,7 @@ public class P54_Position_of_Element_in_Sorted_Array {
             int hi = arr.length-1;
             int c = 0;
     
+            
             while(lo<=hi){
                 int mid = lo+(hi-lo)/2;
                 if(arr[mid]>target){
