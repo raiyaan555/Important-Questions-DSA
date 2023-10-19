@@ -1,5 +1,7 @@
 package Stack_and_Queues;
 
+import java.util.Stack;
+
 public class Backspace_String_Compare {
     class Solution {
         public boolean backspaceCompare(String s, String t) {
